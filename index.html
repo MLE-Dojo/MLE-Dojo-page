@@ -24,7 +24,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"> --> 
 
 
-  <title>BBox-Adapter</title>
+  <title>MLE-Dojo</title>
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
@@ -52,7 +52,8 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title" style="font-size: 2.9em; font-weight: bold;">BBox-Adapter<br><span style="font-size: 0.8em; font-weight: normal;">Lightweight Adapting for Black-Box Large Language Models</span></h1>
+            <h1 class="title is-1 publication-title" style="font-size: 2.9em; font-weight: bold;">MLE-Dojo<br><span style="font-size: 0.8em; font-weight: normal;">mproving LLM Agents for Machine
+              Learning Engineering in Interactive Environments</span></h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
@@ -100,7 +101,7 @@
 
                   <!-- Github link -->
                   <span class="link-block">
-                    <a href="https://github.com/haotiansun14/BBox-Adapter" target="_blank"
+                    <a href="https://github.com/jerrycool2002/MLE-Dojo" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -135,7 +136,7 @@
         <!-- Your video here -->
         <img src="static/images/banner.gif" alt="MY ALT TEXT"/>
       <h2 class="subtitle has-text-centered">
-        BBox-Adapter is a lightweight adapter that adapts black-box LLMs for specific tasks by fine-tuning a smaller language model iteratively.       </h2>
+        MLE-Dojo is a Gym-style framework for systematically training, evaluating, and improving autonomous large language model (LLM) agents in iterative machine learning engineering (MLE) workflows.</h2>
     </div>
   </div>
 </section>
@@ -149,7 +150,12 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Adapting state-of-the-art Large Language Models (LLMs) like GPT-4 and Gemini for specific tasks is challenging. Due to the opacity in their parameters, embeddings, and even output probabilities, existing fine-tuning adaptation methods are inapplicable. Consequently, adapting these black-box LLMs is only possible through their API services, raising concerns about transparency, privacy, and cost. To address these challenges, we introduce BBox-Adapter, a novel lightweight adapter for black-box LLMs. BBox-Adapter distinguishes target and source domain data by treating target data as positive and source data as negative. It employs a ranking-based Noise Contrastive Estimation (NCE) loss to promote the likelihood of target domain data while penalizing that of the source domain. Furthermore, it features an online adaptation mechanism, which incorporates real-time positive data sampling from ground-truth, human, or AI feedback, coupled with negative data from previous adaptations. Extensive experiments demonstrate BBox-Adapter's effectiveness and cost efficiency. It improves model performance by up to 6.77% across diverse tasks and domains, while reducing training and inference costs by 31.30x and 1.84x, respectively.          </p>
+            We introduce MLE-Dojo, a Gym-style framework for systematically training, evaluating, and improving autonomous large language model (LLM) agents in iterative machine learning engineering (MLE) workflows. 
+Unlike existing benchmarks that primarily rely on static datasets or single-attempt evaluations, MLE-Dojo provides an interactive environment enabling agents to iteratively experiment, debug, and refine solutions through structured feedback loops. 
+Built upon 200+ real-world Kaggle challenges (\eg, tabular data analysis, computer vision, natural language processing, and time series forecasting). MLE-Dojo covers diverse, open-ended MLE tasks carefully curated to reflect realistic engineering scenarios such as data processing, architecture search, hyperparameter tuning, and code debugging.
+Its fully executable environment supports comprehensive agent training via both supervised fine-tuning and reinforcement learning, facilitating iterative experimentation, realistic data sampling, and real-time outcome verification. 
+Extensive evaluations of eight frontier LLMs reveal that while current models achieve meaningful iterative improvements, they still exhibit significant limitations in autonomously generating long-horizon solutions and efficiently resolving complex errors. 
+Furthermore, MLE-Dojo's flexible and extensible architecture seamlessly integrates diverse data sources, tools, and evaluation protocols, uniquely enabling model-based agent tuning and promoting interoperability, scalability, and reproducibility.          </p>
         </div>
       </div>
     </div>
