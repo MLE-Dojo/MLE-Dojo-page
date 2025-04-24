@@ -185,22 +185,20 @@ Furthermore, MLE-Dojo's flexible and extensible architecture seamlessly integrat
       <img src="static/images/scp/elo_bar.jpg" alt="MY ALT TEXT"width="720" height="480">
   </div>  
     <h2 class="title">Experiments</h2>
-    <br>
     We evaluate 8 mainstream LLMs as MLE Agents on 50 MLE-Dojo Evaluation tasks, which covers Tabular, NLP, CV, Time Series and so on.
     To ensure a comprehensive evaluation, we consider Area Under the Performance Profile (AUP), HumanRank Score (H-Rank, %), and Elo ranking together as metrics. 
     We actively maintain a long-term real-time leaderboard to foster community-driven innovation.<ul>
     <h3 class="title">Main Results</h3>
-    <br> Reasoning and coding models such as <code>o3-mini</code>, <code>DeepSeek-r1</code>, and <code>Gemini-2.5-Pro</code> 
+    Reasoning and coding models such as <code>o3-mini</code>, <code>DeepSeek-r1</code>, and <code>Gemini-2.5-Pro</code> 
   consistently achieve high rankings across all metrics, demonstrating strong adaptability, robustness, and overall effectiveness as MLE Agents.
     <img src="static/images/scp/table.png" alt="MY ALT TEXT">
     <h3 class="title">Difficulty</h3>
-    <br>
     We define the difficulty level of different tasks with the average performance of different
 models in comparison with the human leaderboard. illustrates the average performance
 distribution across 8 frontier models on the tasks. As shown in the figure, CV tasks are the most
 challenging-none of them have an average HumanRank score above 60, and more than half fall below
 30. For MLE-Lite tasks, the average HumanRank scores mostly exceed 30. Difficulty levels of tasks
-in other domains are more evenly distributed.
+in other domains are more evenly distributed. <br>
       <img src="static/images/scp/difficulty.jpg" alt="MY ALT TEXT">
     <h3 class="title">Cost v.s. Performance</h3>
     <br>
@@ -208,7 +206,7 @@ in other domains are more evenly distributed.
     <br>
     The tuned BBox-Adapter can be seamlessly applied to various black-box LLMs in a plug-and-play manner, eliminating the need for retraining or additional technical modifications. Compared to their unadapted black-box LLMs, davinci-002 and Mixtral-8x7B, our trained adapter demonstrates an average performance improvement of 6.85% and 4.50% across all three datasets, respectively. 
     The effectiveness of BBox-Adapter in plug-and-play scenarios arises from its independence from the internal parameters of black-box LLMs. 
-    <h3 class="title">Costs</h3>
+    <h3 class="title">Step-wise Performance Dynamics</h3>
     <br>
     <img src="static/images/cost.png" alt="MY ALT TEXT">
     <br>
@@ -217,7 +215,7 @@ BBox-Adapter, in single-step inference variant, brings 3.45% performance gain co
 Meanwhile, its full-step inference variant achieves 5.90% improvement over the base model with 31.30 times less training cost and 1.84 times less inference cost.
 This increased cost in its full-step variant is attributed to the integration of a beam search in the adapted inference, which requires the use of the black-box LLM APIs to generate multiple solution paths for selection.
 
-    <h3 class="title">Case Study</h3>
+    <h3 class="title">History Length and Solution LengthMLE</h3>
     <br>Here is a case study of BBox-Adapter on GSM8K. For the given question, the CoT solution from original gpt-3.5-turbo is incorrect, while the model adapted using BBox-Adapter successfully executed a logical, step-by-step search, ultimately yielding the correct answer. For clarity, we display only the top-3 candidate answers at each step.
     <br><br>
     <img src="static/images/case.png" alt="MY ALT TEXT">
