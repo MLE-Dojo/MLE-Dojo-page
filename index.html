@@ -55,9 +55,9 @@
             <figure style="text-align: center; margin-bottom: 1rem;">
               <img src="static/images/scp/icon.jpg" alt="MLE-Dojo Logo" style="width: 300px; height: auto;">
             </figure>
-            <h1 class="title is-1 publication-title" style="font-size: 2.9em; font-weight: bold;">MLE-Dojo<br>
-              <span style="font-size: 0.8em; font-weight: normal;">Improving LLM Agents for Machine
-              Learning Engineering in Interactive Environments</span></h1>
+            <h1 class="title is-1 publication-title" style="font-size: 2.2em; font-weight: normal;">
+              <strong>MLE-Dojo:</strong> Improving LLM Agents for Machine Learning Engineering in Interactive Environments
+            </h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
@@ -194,8 +194,7 @@ Furthermore, MLE-Dojo's flexible and extensible architecture seamlessly integrat
     <img src="static/images/scp/table.png" alt="MY ALT TEXT">
     <h3 class="title">Difficulty</h3>
     We define the difficulty level of different tasks with the average performance of different
-models in comparison with the human leaderboard. Figure below illustrates the average performance
-distribution across 8 frontier models on the tasks. As shown in the figure, CV tasks are the most
+models in comparison with the human leaderboard. As shown in the figure, CV tasks are the most
 challenging-none of them have an average HumanRank score above 60, and more than half fall below
 30. For MLE-Lite tasks, the average HumanRank scores mostly exceed 30. Difficulty levels of tasks
 in other domains are more evenly distributed. 
@@ -211,7 +210,7 @@ in other domains are more evenly distributed.
     Notably, tasks involving computer vision and deep neural network training pipelines consistently generate longer codes compared to classical ML tasks (<em>e.g.</em>, tabular analysis) executed on CPUs.
 
     While cost generally correlates with solution complexity and token consumption, some models, such as <code>DeepSeek-r1</code>, achieve competitive performance with significantly fewer tokens, highlighting potential cost-efficiency opportunities.
-    <div style="height: 2em;"></div>
+    <div style="height: 1.5em;"></div>
     <img src="static/images/scp/cost.jpg" alt="MY ALT TEXT">
     <h3 class="title">Step-wise Performance Dynamics</h3>
     Figure below presents the step-wise performance improvements across different models, illustrating variations in performance 
@@ -220,7 +219,7 @@ in other domains are more evenly distributed.
     <code>DeepSeek-r1</code> and <code>Gemini-2.5-Pro</code> exhibit gradual improvements, achieving comparable or superior performance 
     in intermediate to later steps. Non-reasoning models occasionally outperform reasoning models at early or intermediate steps but 
     generally show limited improvement as steps progress, resulting in lower final scores.
-    <div style="height: 2em;"></div>
+    <div style="height: 1.5em;"></div>
     <img src="static/images/scp/improve.jpg" alt="MY ALT TEXT">
     <h3 class="title">History Length and Solution Length</h3>
     Figure below shows both the total chat history length, including all interaction prompts, 
@@ -232,9 +231,75 @@ in other domains are more evenly distributed.
     increased solution length does not inherently ensure superior outcomes, it generally indicates a 
     model's capability to explore more intricate and sophisticated solution strategies, a hallmark 
     predominantly observed in more capable reasoning models.
-    <div style="height: 2em;"></div>
-    <img src="static/images/scp/history.jpg" alt="MY ALT TEXT" style="width: 500px; height: auto;">
+    <div style="text-align: center; margin-top: 1.5em;">
+    <img src="static/images/scp/history.jpg" alt="MY ALT TEXT" style="width: 600px; height: auto;">
+    </div>
+    <h2 class="title">Develop with <code>MLE-Dojo</code></h2>
 
+    <h3><code>mledojo</code> Interface and APIs</h3>
+    <p>
+      We provide 
+      <a href="https://github.com/MLE-Dojo/MLE-Dojo/example/example.ipynb" target="_blank">
+        quick examples
+      </a>
+      of APIs.
+    </p>
+    <p>
+      MLE-Dojo provides flexible Gym-style APIs that allow users to build personalized environments,
+      introduce new datasets, and develop/utilize different agent scaffolds.
+    </p>
+    <p>
+      Specifically, <code>mledojo</code> serves as a powerful and flexible toolkit for interacting with machine
+      learning competitions, designed for ease of use and extensibility. Its core components offer a seamless development experience:
+    </p>
+
+    <ol>
+      <li>
+        <strong><code>Interface</code></strong>: Provides the primary way to interact with a competition. It manages distinct sub-interfaces for specific tasks:
+        <ul>
+          <li><code>InfoInterface</code>: Fetches competition details (overview, data structure, etc.).</li>
+          <li><code>CodeValidationInterface</code>: Performs <strong>safe, preliminary checks</strong> on user code syntax and basic runtime behavior within a sandbox.</li>
+          <li><code>CodeExecutionInterface</code>: Manages the <strong>full execution of user code</strong> within the sandbox, handles submission generation, and triggers evaluation.</li>
+          <li><strong>Flexibility</strong>: The <code>Interface</code> is <strong>modular</strong>, allowing developers to easily <strong>register custom interaction components</strong> tailored to specific needs.</li>
+        </ul>
+      </li>
+      <li>
+        <strong><code>Sandbox</code></strong>: Ensures <strong>secure and fair code execution</strong> by running user scripts in an isolated environment with <strong>configurable resource limits</strong> (GPU, memory, time).
+      </li>
+      <li>
+        <strong><code>FeedbackManager</code></strong>: Processes the results from validation and execution, generating <strong>structured and informative feedback</strong>.
+        <ul>
+          <li><strong>Extensibility</strong>: Designed to be extensible, allowing the <strong>registration of custom feedback providers</strong> (e.g., LLM-based analysis, specific error pattern detection) alongside the default <code>BaseFeedback</code>.</li>
+        </ul>
+      </li>
+      <li>
+        <strong><code>KaggleEnvironment</code></strong>: The main entry point, wrapping all components into a <strong>standardized, Gymnasium-compatible environment</strong>.
+        It orchestrates the entire workflow (setup, action handling via <code>step</code>, state tracking, feedback generation),
+        providing a consistent API for users or automated agents.
+      </li>
+    </ol>
+
+    <p>
+      MLE-Dojo combines well-defined interfaces, secure execution, structured feedback, and centralized management within a familiar Gym-style environment.
+      Its <strong>modular and extensible design</strong> grants developers significant flexibility to adapt and build upon the core framework.
+    </p>
+
+    <h3>Collect trajectories for training</h3>
+    <p>
+      MLE-Dojo provides a detailed history management system and a well-defined reward feedback mechanism,
+      including both final outcome rewards and intermediate step rewards.
+      This design enables flexible use for model training via Supervised Fine-Tuning (SFT) or Reinforcement Learning (RL).
+    </p>
+    <p>
+      We provide both 
+      <a href="https://github.com/MLE-Dojo/MLE-Dojo/trajectories/agent_trajectory.json" target="_blank">
+        <strong>Agent History</strong>
+      </a> and 
+      <a href="https://github.com/MLE-Dojo/MLE-Dojo/trajectories/env_history.json" target="_blank">
+        <strong>Environment History</strong>
+      </a> structures.
+    </p>
+      
   </div>
 </section>
 
