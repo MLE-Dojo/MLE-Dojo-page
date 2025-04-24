@@ -178,18 +178,23 @@ Furthermore, MLE-Dojo's flexible and extensible architecture seamlessly integrat
     </ul>
     <br><br>
     <div style="display: flex; justify-content: center;">
-      <img src="static/images/scp/data.jpg" alt="MY ALT TEXT"width="600" height="400">
+      <img src="static/images/scp/data.jpg" alt="MY ALT TEXT"width="720" height="480">
   </div>  
     <h2 class="title">Experiments</h2>
     <br>
-    We evaluate BBox-Adapter on four distinct question-answering tasks, requiring model adaptation on mathematical (GSM8K), implicit-reasoning (StrategyQA), truthful (TruthfulQA), and scientific (ScienceQA) domains.     <ul>
+    We evaluate 8 mainstream LLMs as MLE Agents on 50 MLE-Dojo Evaluation tasks, which covers Tabular, NLP, CV, Time Series and so on.
+    To ensure a comprehensive evaluation, we consider Area Under the Performance Profile (AUP), HumanRank Score (H-Rank, %), and Elo ranking together as metrics. 
+    We actively maintain a long-term real-time leaderboard to foster community-driven innovation.<ul>
     <h3 class="title">Main Results</h3>
     <img src="static/images/scp/table.png" alt="MY ALT TEXT">
     <br>
-    BBox-Adapter consistently outperforms gpt-3.5-turbo by an average of 6.39% across all datasets, highlighting its efficacy in adapting black-box LLMs to specific tasks.
-    Notably, BBox-Adapter (AI Feedback) demonstrates competitive performance compared to BBox-Adapter (Ground-Truth), which demonstrates its robust generalization capability across datasets, even in the absence of ground-truth answers.
-    Furthermore, BBox-Adapter (Combined) achieves the highest performance among the three variations.
-    This enhanced performance can be attributed to the combination of high-quality initial positive sets derived from ground-truth solutions and the dynamic updating of positive sets through AI feedback, leading to the continuous self-improvement of BBox-Adapter. 
+    Furthermore, we define the difficulty level of different tasks with the average performance of different
+models in comparison with the human leaderboard. illustrates the average performance
+distribution across 8 frontier models on the tasks. As shown in the figure, CV tasks are the most
+challenging-none of them have an average HumanRank score above 60, and more than half fall below
+30. For MLE-Lite tasks, the average HumanRank scores mostly exceed 30. Difficulty levels of tasks
+in other domains are more evenly distributed.
+      <img src="static/images/scp/difficulty.jpg" alt="MY ALT TEXT">
     <h3 class="title">Plug-and-Play</h3>
     <br>
     <img src="static/images/pnp.png" alt="MY ALT TEXT">
