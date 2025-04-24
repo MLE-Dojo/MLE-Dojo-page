@@ -194,31 +194,45 @@ Furthermore, MLE-Dojo's flexible and extensible architecture seamlessly integrat
     <img src="static/images/scp/table.png" alt="MY ALT TEXT">
     <h3 class="title">Difficulty</h3>
     We define the difficulty level of different tasks with the average performance of different
-models in comparison with the human leaderboard. illustrates the average performance
+models in comparison with the human leaderboard. Figure below illustrates the average performance
 distribution across 8 frontier models on the tasks. As shown in the figure, CV tasks are the most
 challenging-none of them have an average HumanRank score above 60, and more than half fall below
 30. For MLE-Lite tasks, the average HumanRank scores mostly exceed 30. Difficulty levels of tasks
 in other domains are more evenly distributed. <br>
       <img src="static/images/scp/difficulty.jpg" alt="MY ALT TEXT">
     <h3 class="title">Cost v.s. Performance</h3>
-    <br>
-    <img src="static/images/pnp.png" alt="MY ALT TEXT">
-    <br>
-    The tuned BBox-Adapter can be seamlessly applied to various black-box LLMs in a plug-and-play manner, eliminating the need for retraining or additional technical modifications. Compared to their unadapted black-box LLMs, davinci-002 and Mixtral-8x7B, our trained adapter demonstrates an average performance improvement of 6.85% and 4.50% across all three datasets, respectively. 
-    The effectiveness of BBox-Adapter in plug-and-play scenarios arises from its independence from the internal parameters of black-box LLMs. 
-    <h3 class="title">Step-wise Performance Dynamics</h3>
-    <br>
-    <img src="static/images/cost.png" alt="MY ALT TEXT">
-    <br>
-    Compared with the base model, Azure-SFT boosts accuracy by an average of 6.35% at the expense of significantly higher costs.
-BBox-Adapter, in single-step inference variant, brings 3.45% performance gain compared with the base model, with 41.97 times less training cost and 6.27 times less inference cost than SFT.
-Meanwhile, its full-step inference variant achieves 5.90% improvement over the base model with 31.30 times less training cost and 1.84 times less inference cost.
-This increased cost in its full-step variant is attributed to the integration of a beam search in the adapted inference, which requires the use of the black-box LLM APIs to generate multiple solution paths for selection.
+    Figure below illustrates the cost-performance relationship across different LLMs and task categories.
 
-    <h3 class="title">History Length and Solution LengthMLE</h3>
-    <br>Here is a case study of BBox-Adapter on GSM8K. For the given question, the CoT solution from original gpt-3.5-turbo is incorrect, while the model adapted using BBox-Adapter successfully executed a logical, step-by-step search, ultimately yielding the correct answer. For clarity, we display only the top-3 candidate answers at each step.
-    <br><br>
-    <img src="static/images/case.png" alt="MY ALT TEXT">
+    Reasoning models (<em>e.g.</em>, <code>DeepSeek-r1</code>) typically incur higher costs due to their premium pricing structures and longer solution outputs.
+
+    Even reasoning models with comparatively lower pricing, such as <code>o3-mini</code>, tend to produce longer outputs due to more complex reasoning processes. These longer outputs significantly increase overall token consumption, contributing to higher cumulative costs.
+
+    Notably, tasks involving computer vision and deep neural network training pipelines consistently generate longer codes compared to classical ML tasks (<em>e.g.</em>, tabular analysis) executed on CPUs.
+
+    While cost generally correlates with solution complexity and token consumption, some models, such as <code>DeepSeek-r1</code>, achieve competitive performance with significantly fewer tokens, highlighting potential cost-efficiency opportunities.
+
+    <img src="static/images/scp/cost.jpg" alt="MY ALT TEXT">
+    <h3 class="title">Step-wise Performance Dynamics</h3>
+    Figure below presents the step-wise performance improvements across different models, illustrating variations in performance 
+    trajectories between reasoning and non-reasoning models. Among reasoning models, <code>o3-mini</code> consistently achieves high 
+    performance within the initial steps (typically within the first five) and maintains stable scores in subsequent steps. Conversely, 
+    <code>DeepSeek-r1</code> and <code>Gemini-2.5-Pro</code> exhibit gradual improvements, achieving comparable or superior performance 
+    in intermediate to later steps. Non-reasoning models occasionally outperform reasoning models at early or intermediate steps but 
+    generally show limited improvement as steps progress, resulting in lower final scores.
+    <br>
+    <img src="static/images/scp/improve.jpg" alt="MY ALT TEXT">
+    <h3 class="title">History Length and Solution Length</h3>
+    Figure below shows both the total chat history length, including all interaction prompts, 
+    actions, and generated codes, and the length of the best solution generated by each model. 
+    The total chat history length closely aligns with the best solution length, where both metrics 
+    positively correlate with overall model performance. Reasoning models typically generate notably 
+    longer solutions compared to non-reasoning models. Moreover, stronger-performing models frequently 
+    produce more extended solutions, which often correspond to higher performance scores. Although 
+    increased solution length does not inherently ensure superior outcomes, it generally indicates a 
+    model's capability to explore more intricate and sophisticated solution strategies, a hallmark 
+    predominantly observed in more capable reasoning models.
+    <br>
+    <img src="static/images/scp/history.jpg" alt="MY ALT TEXT">
 
   </div>
 </section>
