@@ -181,7 +181,45 @@ Furthermore, MLE-Dojo's flexible and extensible architecture seamlessly integrat
     <br><br>
     <div style="display: flex; justify-content: center;">
       <img src="static/images/scp/elo_bar.jpg" alt="MY ALT TEXT"width="720" height="480">
-  </div>  
+  </div> 
+    <h2 class="title">Data</h2>
+    <p>
+    The <strong>MLE-Dojo</strong> benchmark comprises over <strong>200 real-world machine learning tasks</strong> spanning <em>tabular data, computer vision, NLP, and time series</em>, sourced from Kaggle. Each task is <strong>standardized</strong> into a unified format—featuring structured descriptions, reorganized datasets, local evaluators, and human leaderboards—designed for seamless interaction with LLM agents. Tasks are selected for their diversity, practical relevance, and validation feasibility, forming a <strong>scalable and extensible dataset</strong> tailored for training and evaluating autonomous ML agents under realistic, iterative workflows.
+    Users can effortlessly and flexibly incorporate new tasks, enabling seamless adaptation to diverse requirements and application scenarios.
+    </p>
+    <div style="text-align: center; margin-top: 1.5em;">
+    <img src="static/images/scp/data.jpg" alt="MY ALT TEXT" style="width: 600px; height: auto;">
+    </div>
+    <h2 class="title">Key Features</h2>
+    <h3 class="title">Overview</h3>
+    <p>
+    <code>\method</code> provides a unified, Gym-style framework for training and evaluating LLM-based MLE agents in realistic, iterative ML engineering environments. It formalizes interactions as POMDPs and supports structured feedback through code execution, observation, and reward signals.
+    </p>
+    
+    <h3 class="title">Modular and User-Friendly Interface</h3>
+    <p>
+    The environment is composed of modular components—<code>Error</code>, <code>Interface</code>, <code>Feedback</code>, and <code>Metric</code>—that are fully decoupled and extensible via a clean registration API. A single <code>env.step</code> call enables seamless agent-environment interaction, simplifying agent design and integration.
+    </p>
+    
+    <h3 class="title">Extensible Task Space</h3>
+    <p>
+    All tasks are isolated in reproducible Docker containers with configurable execution sandboxes. A unified data format standardizes integration, allowing users to add custom competitions with minimal effort, ensuring compatibility and secure agent testing.
+    </p>
+    
+    <h3 class="title">Observation Space</h3>
+    <p>
+    Each environment provides rich, structured observations, including competition context, evaluation metrics, code execution results, detailed error messages, and both agent- and environment-side interaction histories. This empowers agents with full situational awareness.
+    </p>
+    
+    <h3 class="title">Expandable Action Space</h3>
+    <p>
+    <code>\method</code> supports five core actions—<code>request_info</code>, <code>validate_code</code>, <code>execute_code</code>, <code>get_history</code>, and <code>reset</code>—and allows users to register new actions through a customizable portal, enabling advanced experimentation and behavior design.
+    </p>
+    
+    <h3 class="title">Reward Space and Environmental Feedback</h3>
+    <p>
+    Instead of coarse-grained medals, <code>\method</code> uses the <strong>HumanRank Score</strong>, a normalized leaderboard-based reward that reflects how well agents perform compared to human participants. This enables unified, fine-grained evaluation across diverse competitions.
+    </p>
     <h2 class="title">Experiments</h2>
     We evaluate 8 mainstream LLMs as MLE Agents on 50 MLE-Dojo Evaluation tasks, which covers Tabular, NLP, CV, Time Series and so on.
     To ensure a comprehensive evaluation, we consider Area Under the Performance Profile (AUP), HumanRank Score (H-Rank, %), and Elo ranking together as metrics. 
